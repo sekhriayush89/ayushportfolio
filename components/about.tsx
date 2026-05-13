@@ -30,9 +30,8 @@ export default function About() {
         <p className="text-foreground/60 text-lg mb-16">Software engineer with passion for innovation</p>
 
         <div
-          className={`grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 ${
-            isInView ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 ${isInView ? 'opacity-100' : 'opacity-0'
+            }`}
         >
           {/* Main content */}
           <div className="md:col-span-2 space-y-6">
