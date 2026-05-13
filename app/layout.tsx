@@ -7,13 +7,13 @@ const _geistSans = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Ayush Sekhri - Software Engineer, Full Stack Developer & MERN Stack Developer",
+  title: "Ayush Sekhri - MERN Stack Developer",
   description:
     "Portfolio of Ayush Sekhri, an MCA student and software engineer specializing in Node.js, AI, and modern web technologies. Located in Shimla, HP.",
-  keywords: "MERN stack developer, software engineer, full stack developer, Node.js, AI, web developer, portfolio, Shimla",
+  keywords: "software engineer, full stack developer, Node.js, AI, web developer, portfolio, Shimla",
   authors: [{ name: "Ayush Sekhri" }],
   openGraph: {
-    title: "Ayush Sekhri - Software Engineer & MERN Stack Developer",
+    title: "Ayush Sekhri - MERN Stack Developer",
     description: "Explore my portfolio featuring innovative projects in AI, web development, and software engineering.",
     type: "website",
   },
