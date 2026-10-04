@@ -12,11 +12,11 @@ const specialties = [
 const videos = [
   { file: 'dot and key commercial.mp4', title: 'Dot & Key Commercial', category: 'Beauty / Campaign' },
   { file: 'dotkeypromo.mp4', title: 'Dot & Key Promo', category: 'Beauty / Social' },
+  { file: 'serum.mp4', title: 'Serum Product Showcase', category: 'Beauty / Product' },
+  { file: 'souled.mp4', title: 'Souled Lifestyle Concept', category: 'Lifestyle / Brand' },
   { file: 'jwelleey2.mp4', title: 'Jewellery Campaign', category: 'Fashion / Product' },
   { file: 'jwelley.mp4', title: 'Jewellery Visual', category: 'Fashion / Product' },
   { file: 'magical.mp4', title: 'Magical Product Concept', category: 'Product / Concept' },
-  { file: 'serum.mp4', title: 'Serum Product Showcase', category: 'Beauty / Product' },
-  { file: 'souled.mp4', title: 'Souled Lifestyle Concept', category: 'Lifestyle / Brand' },
 ]
 
 export default function AIContent() {
