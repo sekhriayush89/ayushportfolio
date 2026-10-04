@@ -10,13 +10,13 @@ const specialties = [
 ]
 
 const videos = [
-  { file: 'dot and key commercial.mp4', title: 'Dot & Key Commercial', category: 'Beauty / Campaign' },
-  { file: 'dotkeypromo.mp4', title: 'Dot & Key Promo', category: 'Beauty / Social' },
-  { file: 'serum.mp4', title: 'Serum Product Showcase', category: 'Beauty / Product' },
-  { file: 'souled.mp4', title: 'Souled Lifestyle Concept', category: 'Lifestyle / Brand' },
-  { file: 'jwelleey2.mp4', title: 'Jewellery Campaign', category: 'Fashion / Product' },
-  { file: 'jwelley.mp4', title: 'Jewellery Visual', category: 'Fashion / Product' },
-  { file: 'magical.mp4', title: 'Magical Product Concept', category: 'Product / Concept' },
+  { file: 'dot and key commercial.mp4', thumbnail: 'dot-key-commercial.webp', title: 'Dot & Key Commercial', category: 'Beauty / Campaign' },
+  { file: 'dotkeypromo.mp4', thumbnail: 'dot-key-promo.webp', title: 'Dot & Key Promo', category: 'Beauty / Social' },
+  { file: 'serum.mp4', thumbnail: 'serum.webp', title: 'Serum Product Showcase', category: 'Beauty / Product' },
+  { file: 'souled.mp4', thumbnail: 'souled.webp', title: 'Souled Lifestyle Concept', category: 'Lifestyle / Brand' },
+  { file: 'jwelleey2.mp4', thumbnail: 'jewellery-campaign.webp', title: 'Jewellery Campaign', category: 'Fashion / Product' },
+  { file: 'jwelley.mp4', thumbnail: 'jewellery-visual.webp', title: 'Jewellery Visual', category: 'Fashion / Product' },
+  { file: 'magical.mp4', thumbnail: 'magical-product.webp', title: 'Magical Product Concept', category: 'Product / Concept' },
 ]
 
 export default function AIContent() {
@@ -49,7 +49,7 @@ export default function AIContent() {
             {videos.map((video, index) => (
               <article key={video.file} className="group">
                 <div className="relative overflow-hidden bg-black border border-foreground/15 group-hover:border-accent/70 transition-colors" style={{ aspectRatio: '9 / 16' }}>
-                  <video className="w-full h-full object-cover" controls preload="metadata">
+                  <video className="w-full h-full object-cover" controls preload="metadata" poster={`/images/video-thumbnails/${video.thumbnail}`}>
                   <source src={`/videos/${encodeURIComponent(video.file)}`} type="video/mp4" />
                   Your browser does not support the video tag.
                   </video>

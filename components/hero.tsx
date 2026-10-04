@@ -48,7 +48,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-xl text-foreground/70 mb-8 leading-relaxed max-w-lg">
-            <span className="text-accent font-semibold">MERN &amp; Full Stack Developer + AI Content Creator</span> building scalable{" "}
+            <span className="text-accent font-semibold">Full Stack Developer + AI Content Creator</span> building scalable{" "}
             <span className="text-accent font-semibold">full-stack web applications</span> with{" "}
             <span className="text-accent font-semibold">React.js</span>,{" "}
             <span className="text-accent font-semibold">Node.js</span>, and{" "}

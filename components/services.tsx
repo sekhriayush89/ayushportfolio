@@ -12,7 +12,7 @@ export default function Services() {
     {
       icon: Code2,
       title: 'Full Stack Development',
-      description: 'End-to-end web application development using MERN stack with clean, scalable architecture and best practices.',
+      description: 'End-to-end web application development using React.js, Node.js, and MongoDB with clean, scalable architecture and best practices.',
       color: 'from-accent to-primary',
     },
     {

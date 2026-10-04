@@ -9,7 +9,7 @@ export default function About() {
 
   const experiences = [
     {
-      role: 'MERN Stack Intern',
+      role: 'Full Stack Intern',
       company: 'Sensation Software Limited',
       period: 'Jan 2026 – June 2026',
       description: 'Mohali, Punjab',
@@ -19,7 +19,7 @@ export default function About() {
       ]
     },
     {
-      role: 'MERN Stack Developer Intern',
+      role: 'Full Stack Developer Intern',
       company: 'IndraQ Innovations Pvt. Ltd.',
       period: 'July 2026 – September 2026',
       description: 'Mohali, Punjab',
@@ -38,7 +38,7 @@ export default function About() {
           <span className="text-foreground/60">About</span>{' '}
           <span className="bg-linear-to-r from-accent to-primary bg-clip-text text-transparent">Me</span>
         </h2>
-        <p className="text-foreground/60 text-lg mb-16">MERN &amp; Full Stack Developer + AI Content Creator with a passion for innovation</p>
+        <p className="text-foreground/60 text-lg mb-16">Full Stack Developer + AI Content Creator with a passion for innovation</p>
 
         <div
           className={`grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 ${isInView ? 'opacity-100' : 'opacity-0'
@@ -48,7 +48,7 @@ export default function About() {
           <div className="md:col-span-2 space-y-6">
             <div>
               <p className="text-lg text-foreground/70 leading-relaxed">
-                I'm a MERN and Full Stack Developer and AI Content Creator with experience building scalable web applications and integrating AI-powered features. Proficient in MongoDB, Express.js, React.js, and Node.js, with expertise in REST API development, responsive UI design, secure authentication systems, and generative AI content production.
+                I'm a Full Stack Developer and AI Content Creator with experience building scalable web applications and integrating AI-powered features. Proficient in MongoDB, Express.js, React.js, and Node.js, with expertise in REST API development, responsive UI design, secure authentication systems, and generative AI content production.
               </p>
             </div>
             <div>
@@ -99,7 +99,7 @@ export default function About() {
               </li>
               <li className="flex gap-3 items-start group">
                 <span className="text-accent mt-1 group-hover:scale-125 transition-transform">▸</span>
-                <span className="group-hover:text-foreground transition-colors">MERN &amp; Full Stack Developer + AI Content Creator</span>
+                <span className="group-hover:text-foreground transition-colors">Full Stack Developer + AI Content Creator</span>
               </li>
               <li className="flex gap-3 items-start group">
                 <span className="text-accent mt-1 group-hover:scale-125 transition-transform">▸</span>

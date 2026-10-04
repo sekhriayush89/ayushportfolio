@@ -27,9 +27,9 @@ export default function Roadmap() {
     },
     {
       icon: Briefcase,
-      title: 'MERN Stack Internship',
+      title: 'Full Stack Internship',
       subtitle: 'Jan 2026 – May 2026',
-      description: 'Interned at Sensation Software Limited, working on full-stack web applications and API development using MERN technologies.',
+      description: 'Interned at Sensation Software Limited, working on full-stack web applications and API development using React.js, Node.js, and MongoDB.',
       color: 'from-green-500 to-emerald-500',
       position: 'bottom-0 left-0',
     },
