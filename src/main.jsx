@@ -5,6 +5,7 @@ import './styles.css'
 import bannerVideo from './asset/banner.mp4'
 import bannerImage from './asset/banner.png'
 import cursorImage from './asset/cursor.png'
+import endingImage from './asset/ending.png'
 import graphicVideo from './asset/grpahic.mp4'
 import image1 from './asset/image1.jpeg'
 import image2 from './asset/image2.jpeg'
@@ -146,47 +147,31 @@ function AnimatedName({ isVisible }) {
 
 function ProjectVideo({ src, label }) {
   const videoRef = useRef(null)
-  const userPausedRef = useRef(false)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return undefined
-
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        if (!userPausedRef.current) video.play().catch(() => undefined)
-      } else {
-        video.pause()
-      }
-    }, { rootMargin: '120px 0px', threshold: 0.15 })
-
-    observer.observe(video)
-    return () => observer.disconnect()
-  }, [])
+  const [isPlaying, setIsPlaying] = useState(false)
 
   const togglePlayback = () => {
     const video = videoRef.current
     if (!video) return
-    if (video.paused) {
-      userPausedRef.current = false
-      video.play().catch(() => undefined)
-    } else {
-      userPausedRef.current = true
-      video.pause()
-    }
+    if (video.paused) video.play().catch(() => undefined)
+    else video.pause()
   }
 
   return (
-    <video
-      ref={videoRef}
-      preload="metadata"
-      loop
-      muted
-      playsInline
-      src={src}
-      onClick={togglePlayback}
-      aria-label={`${label}. Click to play or pause`}
-    />
+    <div className="project-video-frame">
+      <video
+        ref={videoRef}
+        preload="metadata"
+        loop
+        muted
+        playsInline
+        src={src}
+        onClick={togglePlayback}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        aria-label={`${label}. Click to play or pause`}
+      />
+      {!isPlaying && <button className="project-play-button" onClick={togglePlayback} aria-label={`Play ${label}`}><span /></button>}
+    </div>
   )
 }
 
@@ -213,7 +198,7 @@ function App() {
         <a className="monogram" href="#top" aria-label="Back to top">AS<span>.</span></a>
         <div className={`nav-links ${menuOpen ? 'nav-links-open' : ''}`}>
           <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact <ArrowUpRight size={14} /></a>
+          <a href="mailto:sekhriayush89@gmail.com" onClick={() => setMenuOpen(false)}>Contact <ArrowUpRight size={14} /></a>
         </div>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">
           {menuOpen ? <X size={21} /> : <Menu size={21} />}
@@ -363,6 +348,34 @@ function App() {
           </article>
         </div>
       </section>
+
+      <section className="thanks-strip" aria-label="Thanks for visiting">
+        <div className="workfolio-track">
+          <span>THANKS FOR VISITING</span><b>♥</b><span>THANKS FOR VISITING</span><b>♠</b><span>THANKS FOR VISITING</span><b>♦</b><span>THANKS FOR VISITING</span><b>♣</b>
+        </div>
+      </section>
+
+      <section className="concepts-section" id="contact" aria-labelledby="concepts-title">
+        <h2 id="concepts-title">MY CONCEPTS</h2>
+        <div className="concepts-grid">
+          <div className="concepts-poster"><img src={endingImage} alt="Ayush Sekhri concept artwork" /></div>
+          <div className="concepts-contact">
+            <a href="mailto:sekhriayush89@gmail.com">Mail me at sekhriayush89@gmail.com <ArrowUpRight size={18} /></a>
+            <a href="https://cal.com/ayush-sekhri/30min" target="_blank" rel="noreferrer">Let's have a meeting <ArrowUpRight size={18} /></a>
+            <p>Have a bold idea or a project in mind?</p>
+          </div>
+        </div>
+      </section>
+
+      <footer className="site-footer-final">
+        <div className="thanks-watching-strip" aria-label="Thanks for visiting">
+          <div className="workfolio-track">
+            <span>THANKS FOR VISITING</span><b>♥</b><span>THANKS FOR VISITING</span><b>♠</b><span>THANKS FOR VISITING</span><b>♦</b>
+            <span>THANKS FOR VISITING</span><b>♣</b><span>THANKS FOR VISITING</span><b>♥</b><span>THANKS FOR VISITING</span><b>♠</b>
+          </div>
+        </div>
+        <p>© 2026 Ayush Sekhri · All rights reserved.</p>
+      </footer>
     </main>
   )
 }

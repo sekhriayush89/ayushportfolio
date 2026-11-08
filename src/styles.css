@@ -19,7 +19,7 @@ body { cursor: none; margin: 0; min-width: 320px; }
 a { color: inherit; text-decoration: none; }
 button, a { cursor: none; }
 button { color: inherit; font: inherit; }
-.custom-cursor { height: 28px; left: 0; object-fit: contain; pointer-events: none; position: fixed; top: 0; transform: translate3d(-100px, -100px, 0); width: 28px; z-index: 100; }
+.custom-cursor { height: 42px; left: 0; object-fit: contain; pointer-events: none; position: fixed; top: 0; transform: translate3d(-100px, -100px, 0); width: 42px; z-index: 100; }
 
 .site-shell {
   min-height: 100vh;
@@ -138,10 +138,27 @@ h1 { font-family: 'Syne', sans-serif; font-size: clamp(100px, 19vw, 310px); font
 .workfolio-grid { display: grid; gap: 16px; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 auto; max-width: 1320px; }
 .workfolio-card { border: 1px solid rgba(240,239,236,.36); display: flex; flex-direction: column; justify-content: space-between; min-height: 250px; overflow: hidden; }
 .workfolio-card-wide { grid-column: span 2; min-height: 320px; }
+.project-video-frame { min-height: 150px; position: relative; }
 .workfolio-card video { background: #222; display: block; height: 100%; min-height: 150px; object-fit: cover; width: 100%; }
+.project-play-button { align-items: center; backdrop-filter: blur(12px); background: rgba(47,128,237,.94); border: 0; border-radius: 999px; box-shadow: 0 8px 22px rgba(47,128,237,.4); cursor: pointer; display: flex; height: 54px; justify-content: center; left: 50%; padding: 0; position: absolute; top: 50%; transform: translate(-50%, -50%); transition: transform .2s, background .2s; width: 54px; }
+.project-play-button:hover { background: #1769d1; transform: translate(-50%, -50%) scale(1.08); }
+.project-play-button span { border-bottom: 9px solid transparent; border-left: 13px solid #fff; border-top: 9px solid transparent; display: block; margin-left: 4px; }
 .workfolio-card > div { align-items: baseline; display: flex; gap: 18px; justify-content: space-between; padding: 15px 18px 18px; }
 .workfolio-card span { color: rgba(240,239,236,.58); font-family: 'DM Mono', monospace; font-size: 10px; }
 .workfolio-card h3 { font-family: 'Syne', sans-serif; font-size: clamp(15px, 1.65vw, 23px); letter-spacing: -.05em; margin: 0; }
+.workfolio-card video { cursor: pointer; }
+.thanks-strip { background-color: var(--ink); background-image: linear-gradient(rgba(240,239,236,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(240,239,236,.1) 1px, transparent 1px); background-size: 32px 32px; color: var(--paper); overflow: hidden; padding: 8px 0 10px; }
+.concepts-section { padding: 100px 5.5vw 130px; text-align: center; }
+.concepts-section h2 { font-family: 'Syne', sans-serif; font-size: clamp(44px, 7vw, 110px); letter-spacing: -.08em; line-height: .8; margin: 0 auto 42px; }
+.concepts-grid { align-items: stretch; display: grid; gap: 22px; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); margin: 0 auto; max-width: 1120px; text-align: left; }
+.concepts-poster { display: flex; justify-content: center; }
+.concepts-poster img { display: block; height: auto; max-width: 720px; object-fit: contain; width: 100%; }
+.concepts-contact { align-items: flex-start; background: var(--ink); color: var(--paper); display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; }
+.concepts-contact p { font-family: 'DM Mono', monospace; font-size: 15px; line-height: 1.35; margin: 0 0 28px; max-width: 240px; }
+.concepts-contact a { align-items: center; border-bottom: 1px solid var(--paper); display: inline-flex; font-family: 'Syne', sans-serif; font-size: clamp(16px, 2vw, 27px); gap: 8px; line-height: 1.15; margin-top: 12px; padding-bottom: 8px; }
+.site-footer-final { background: var(--paper); color: var(--ink); text-align: center; }
+.thanks-watching-strip { background-color: var(--ink); background-image: linear-gradient(rgba(240,239,236,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(240,239,236,.1) 1px, transparent 1px); background-size: 32px 32px; color: var(--paper); overflow: hidden; padding: 8px 0 10px; }
+.site-footer-final > p { font-family: 'DM Mono', monospace; font-size: 10px; margin: 0; padding: 24px 6vw 28px; text-transform: uppercase; }
 
 .intro-section, .work-section, .site-footer { border-top: 1px solid var(--line); padding: 110px 5.5vw; }
 .section-label { font-family: 'DM Mono', monospace; font-size: 11px; margin: 0; text-transform: uppercase; }
@@ -206,4 +223,6 @@ h1 { font-family: 'Syne', sans-serif; font-size: clamp(100px, 19vw, 310px); font
   .workfolio-grid { grid-template-columns: 1fr; }
   .workfolio-card-wide { grid-column: auto; min-height: 320px; }
   .workfolio-card { min-height: 300px; }
+  .concepts-grid { grid-template-columns: 1fr; }
+  .concepts-contact { min-height: 220px; }
 }
