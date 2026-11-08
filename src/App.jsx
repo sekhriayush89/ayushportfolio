@@ -515,18 +515,6 @@ export default function App() {
           <div className="workfolio-track">{marquee('THANKS FOR VISITING', 16)}</div>
         </div>
 
-        <section className="faq-section" id="faq" aria-labelledby="faq-title">
-          <p className="mindset-kicker">Quick answers</p>
-          <h2 id="faq-title">FAQ</h2>
-          <div className="faq-list">
-            {faqs.map((item) => (
-              <details className="faq-item" key={item.q}>
-                <summary>{item.q}</summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
-          </div>
-        </section>
 
         <section className="concepts-section" id="contact" aria-labelledby="concepts-title">
           <h2 id="concepts-title">MY CONCEPTS</h2>
@@ -546,6 +534,19 @@ export default function App() {
               <a href={site.bookingUrl} target="_blank" rel="noopener noreferrer">Let's have a meeting <ArrowUpRight size={18} aria-hidden="true" /></a>
               <p>Have a bold idea or a project in mind?</p>
             </div>
+          </div>
+        </section>
+
+        <section className="faq-section" id="faq" aria-labelledby="faq-title">
+          <p className="mindset-kicker">Quick answers</p>
+          <h2 id="faq-title">FAQ</h2>
+          <div className="faq-list">
+            {faqs.map((item) => (
+              <details className="faq-item" key={item.q}>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
           </div>
         </section>
       </main>
