@@ -4,24 +4,35 @@ import { ArrowUpRight, Menu, X } from 'lucide-react'
 import './styles.css'
 import bannerVideo from './asset/banner.mp4'
 import bannerImage from './asset/banner.png'
+import cursorImage from './asset/cursor.png'
 import graphicVideo from './asset/grpahic.mp4'
 import image1 from './asset/image1.jpeg'
 import image2 from './asset/image2.jpeg'
 import image3 from './asset/image3.jpeg'
 import introVideo from './asset/video.mp4'
-import souledVideo from './work/souled store.mp4'
-import shimmerKajalVideo from './work/born 16 kajal.mp4'
-import serumVideo from './work/serum.mp4'
-import karvaVideo from './work/born16.mp4'
-import jwelleyVideo from './work/jewellery.mp4'
-import jwelleeyTwoVideo from './work/jewellery2.mp4'
-import dotkeyPromoVideo from './work/dotkeypromo.mp4'
-import dotAndKeyCommercialVideo from './work/dot and key .mp4'
+
+function CustomCursor() {
+  const cursorRef = useRef(null)
+
+  useEffect(() => {
+    const moveCursor = (event) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`
+      }
+    }
+
+    window.addEventListener('pointermove', moveCursor)
+    return () => window.removeEventListener('pointermove', moveCursor)
+  }, [])
+
+  return <img ref={cursorRef} className="custom-cursor" src={cursorImage} alt="" aria-hidden="true" />
+}
 
 function IntroVideo({ source = introVideo, label = 'Ayush Sekhri intro video', removeGreenBackground = false, canvasClassName = 'intro-video' }) {
   const [videoMissing, setVideoMissing] = useState(false)
   const videoRef = useRef(null)
   const canvasRef = useRef(null)
+  const visibleRef = useRef(false)
 
   useEffect(() => {
     const video = videoRef.current
@@ -32,6 +43,11 @@ function IntroVideo({ source = introVideo, label = 'Ayush Sekhri intro video', r
     let frameId
 
     const drawTransparentFrame = () => {
+      if (!visibleRef.current) {
+        frameId = undefined
+        return
+      }
+
       if (video.readyState >= 2) {
         if (canvas.width !== video.videoWidth) canvas.width = video.videoWidth
         if (canvas.height !== video.videoHeight) canvas.height = video.videoHeight
@@ -58,11 +74,18 @@ function IntroVideo({ source = introVideo, label = 'Ayush Sekhri intro video', r
 
     const startVideo = () => {
       video.play().catch(() => undefined)
-      drawTransparentFrame()
+      if (visibleRef.current) drawTransparentFrame()
     }
 
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      visibleRef.current = entry.isIntersecting
+      if (entry.isIntersecting && frameId === undefined) drawTransparentFrame()
+    }, { rootMargin: '120px 0px', threshold: 0.01 })
+
+    visibilityObserver.observe(canvas)
     video.addEventListener('loadeddata', startVideo)
     return () => {
+      visibilityObserver.disconnect()
       video.removeEventListener('loadeddata', startVideo)
       cancelAnimationFrame(frameId)
     }
@@ -121,6 +144,52 @@ function AnimatedName({ isVisible }) {
   return <span className="name-tag transition-[opacity,transform] duration-500 ease-out">{name}</span>
 }
 
+function ProjectVideo({ src, label }) {
+  const videoRef = useRef(null)
+  const userPausedRef = useRef(false)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return undefined
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!userPausedRef.current) video.play().catch(() => undefined)
+      } else {
+        video.pause()
+      }
+    }, { rootMargin: '120px 0px', threshold: 0.15 })
+
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [])
+
+  const togglePlayback = () => {
+    const video = videoRef.current
+    if (!video) return
+    if (video.paused) {
+      userPausedRef.current = false
+      video.play().catch(() => undefined)
+    } else {
+      userPausedRef.current = true
+      video.pause()
+    }
+  }
+
+  return (
+    <video
+      ref={videoRef}
+      preload="metadata"
+      loop
+      muted
+      playsInline
+      src={src}
+      onClick={togglePlayback}
+      aria-label={`${label}. Click to play or pause`}
+    />
+  )
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -139,6 +208,7 @@ function App() {
 
   return (
     <main className="site-shell">
+      <CustomCursor />
       <nav className={`topbar ${scrolled ? 'topbar-scrolled' : ''}`}>
         <a className="monogram" href="#top" aria-label="Back to top">AS<span>.</span></a>
         <div className={`nav-links ${menuOpen ? 'nav-links-open' : ''}`}>
@@ -260,35 +330,35 @@ function App() {
       <section className="workfolio-work" aria-label="Workfolio projects">
         <div className="workfolio-grid">
           <article className="workfolio-card">
-            <video autoPlay loop muted playsInline src={souledVideo} aria-label="Souled project video" />
+            <ProjectVideo src="https://res.cloudinary.com/dw8y3wzsg/video/upload/v1794141134/souled_store.mp4" label="Souled Store project video" />
             <div><span>01</span><h3>Souled Store</h3></div>
           </article>
           <article className="workfolio-card">
-            <video autoPlay loop muted playsInline src={shimmerKajalVideo} aria-label="Shimmer Kajal project video" />
+            <ProjectVideo src="https://res.cloudinary.com/dw8y3wzsg/video/upload/v1794141117/born_16_kajal.mp4" label="Born16 Kajal project video" />
             <div><span>02</span><h3>Born16 Kajal</h3></div>
           </article>
           <article className="workfolio-card">
-            <video autoPlay loop muted playsInline src={serumVideo} aria-label="Serum project video" />
+            <ProjectVideo src="https://res.cloudinary.com/dw8y3wzsg/video/upload/v1794141121/serum.mp4" label="Serum project video" />
             <div><span>03</span><h3>Serum Ad</h3></div>
           </article>
           <article className="workfolio-card">
-            <video autoPlay loop muted playsInline src={karvaVideo} aria-label="Karva project video" />
+            <ProjectVideo src="https://res.cloudinary.com/dw8y3wzsg/video/upload/v1794141149/born16.mp4" label="Born16 Ad project video" />
             <div><span>04</span><h3>Born16 Ad</h3></div>
           </article>
           <article className="workfolio-card">
-            <video autoPlay loop muted playsInline src={jwelleyVideo} aria-label="Jwelley project video" />
+            <ProjectVideo src="https://res.cloudinary.com/dw8y3wzsg/video/upload/v1794141126/jewellery.mp4" label="Jewellery Ad project video" />
             <div><span>05</span><h3>Jewellery Ad</h3></div>
           </article>
           <article className="workfolio-card">
-            <video autoPlay loop muted playsInline src={jwelleeyTwoVideo} aria-label="Jwelley second project video" />
-            <div><span>06</span><h3>Jewellery UGC</h3></div>
+            <ProjectVideo src="https://res.cloudinary.com/dw8y3wzsg/video/upload/v1794141140/jewellery2.mp4" label="Jewellery UGC project video" />
+            <div><span>06</span><h3 className="single-line-title">Jewellery UGC</h3></div>
           </article>
           <article className="workfolio-card">
-            <video autoPlay loop muted playsInline src={dotkeyPromoVideo} aria-label="Dot and Key promo video" />
-            <div><span>07</span><h3>Dot & Key UGC</h3></div>
+            <ProjectVideo src="https://res.cloudinary.com/dw8y3wzsg/video/upload/v1794141151/dotkeypromo.mp4" label="Dot and Key UGC project video" />
+            <div><span>07</span><h3 className="single-line-title">Dot & Key UGC</h3></div>
           </article>
           <article className="workfolio-card">
-            <video autoPlay loop muted playsInline src={dotAndKeyCommercialVideo} aria-label="Dot and Key commercial video" />
+            <ProjectVideo src="https://res.cloudinary.com/dw8y3wzsg/video/upload/v1794141137/dot_and_key.mp4" label="Dot and Key Ad project video" />
             <div><span>08</span><h3>Dot & Key Ad</h3></div>
           </article>
         </div>
