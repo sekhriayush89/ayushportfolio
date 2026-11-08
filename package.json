@@ -1,21 +1,26 @@
 {
   "name": "ayush-portfolio",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
+  "engines": { "node": ">=20.6" },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && node scripts/postbuild.mjs",
+    "preview": "vite preview",
+    "upload:videos": "node --env-file=.env scripts/upload-cloudinary.mjs",
+    "optimize:videos": "bash scripts/optimize-videos.sh"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "lucide-react": "latest",
-    "tailwindcss": "latest",
-    "@tailwindcss/vite": "latest"
+    "lucide-react": "1.70.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.5",
+    "@vitejs/plugin-react": "6.2.1",
+    "cloudinary": "^2.5.0",
+    "tailwindcss": "4.3.5",
+    "vite": "8.3.6"
+  }
 }
